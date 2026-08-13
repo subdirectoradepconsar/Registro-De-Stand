@@ -206,30 +206,7 @@
             <p id="email-error" class="text-xs text-rose-400 mt-1 hidden ml-1">Ingresa un correo electrónico válido.</p>
           </div>
 
-          <!-- Campo 3: Teléfono / WhatsApp -->
-          <div>
-            <label for="phone" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
-              Teléfono / WhatsApp <span class="text-emerald-400">*</span>
-            </label>
-            <div class="relative glass-input rounded-xl overflow-hidden">
-              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                required 
-                placeholder="+52 55 1234 5678" 
-                class="w-full bg-transparent text-slate-100 placeholder-slate-500 text-sm pl-11 pr-4 py-3.5 focus:outline-none"
-              />
-            </div>
-            <p id="phone-error" class="text-xs text-rose-400 mt-1 hidden ml-1">Ingresa un número telefónico válido.</p>
-          </div>
-
-          <!-- Campo 4: Género -->
+          <!-- Campo 3: Género -->
           <div>
             <label for="gender" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
               Género <span class="text-emerald-400">*</span>
@@ -261,10 +238,10 @@
             <p id="gender-error" class="text-xs text-rose-400 mt-1 hidden ml-1">Selecciona una opción de género.</p>
           </div>
 
-          <!-- Campo 5: Fecha de Nacimiento -->
+          <!-- Campo 4: Año de Nacimiento -->
           <div>
-            <label for="birthdate" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
-              Fecha de Nacimiento <span class="text-emerald-400">*</span>
+            <label for="birthyear" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 ml-1">
+              Año de Nacimiento <span class="text-emerald-400">*</span>
             </label>
             <div class="relative glass-input rounded-xl overflow-hidden">
               <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -273,14 +250,17 @@
                 </svg>
               </div>
               <input 
-                type="date" 
-                id="birthdate" 
-                name="birthdate" 
+                type="number" 
+                id="birthyear" 
+                name="birthyear" 
+                min="1920"
+                max="2026"
                 required 
-                class="w-full bg-transparent text-slate-100 text-sm pl-11 pr-4 py-3.5 focus:outline-none [color-scheme:dark]"
+                placeholder="Ej. 1995" 
+                class="w-full bg-transparent text-slate-100 placeholder-slate-500 text-sm pl-11 pr-4 py-3.5 focus:outline-none"
               />
             </div>
-            <p id="birthdate-error" class="text-xs text-rose-400 mt-1 hidden ml-1">Ingresa tu fecha de nacimiento.</p>
+            <p id="birthyear-error" class="text-xs text-rose-400 mt-1 hidden ml-1">Ingresa un año de nacimiento válido (ej. 1995).</p>
           </div>
 
           <!-- Botón de Acción Principal -->
@@ -350,21 +330,17 @@
           </div>
           
           <div class="grid grid-cols-2 gap-2.5 pt-1">
-            <div>
+            <div class="col-span-2">
               <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">Correo</span>
               <span id="summary-email" class="text-xs font-medium text-slate-300 block truncate">-</span>
-            </div>
-            <div>
-              <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">Teléfono</span>
-              <span id="summary-phone" class="text-xs font-medium text-slate-300 block truncate">-</span>
             </div>
             <div>
               <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">Género</span>
               <span id="summary-gender" class="text-xs font-medium text-slate-300 block truncate">-</span>
             </div>
             <div>
-              <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">Nacimiento</span>
-              <span id="summary-birthdate" class="text-xs font-medium text-slate-300 block truncate">-</span>
+              <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">Año de Nacimiento</span>
+              <span id="summary-birthyear" class="text-xs font-medium text-slate-300 block truncate">-</span>
             </div>
           </div>
 
@@ -406,23 +382,20 @@
       // Campos de Entrada
       const fullnameInput = document.getElementById('fullname');
       const emailInput = document.getElementById('email');
-      const phoneInput = document.getElementById('phone');
       const genderInput = document.getElementById('gender');
-      const birthdateInput = document.getElementById('birthdate');
+      const birthyearInput = document.getElementById('birthyear');
 
       // Mensajes de Error
       const fullnameError = document.getElementById('fullname-error');
       const emailError = document.getElementById('email-error');
-      const phoneError = document.getElementById('phone-error');
       const genderError = document.getElementById('gender-error');
-      const birthdateError = document.getElementById('birthdate-error');
+      const birthyearError = document.getElementById('birthyear-error');
 
       // Elementos de Resumen
       const summaryName = document.getElementById('summary-name');
       const summaryEmail = document.getElementById('summary-email');
-      const summaryPhone = document.getElementById('summary-phone');
       const summaryGender = document.getElementById('summary-gender');
-      const summaryBirthdate = document.getElementById('summary-birthdate');
+      const summaryBirthyear = document.getElementById('summary-birthyear');
       const summaryTime = document.getElementById('summary-time');
 
       // Lógica de Chips de Dominio Rápido para Correo (Sin Datalist)
@@ -437,18 +410,13 @@
           if (!currentValue) {
             emailInput.value = selectedDomain;
           } else if (currentValue.includes('@')) {
-            // Si ya escribió un '@' (ej: "juan@" o "juan@hot"), conserva lo anterior al @
             const username = currentValue.split('@')[0];
             emailInput.value = username + selectedDomain;
           } else {
-            // Si no tiene '@' (ej: "juan"), concatena directamente el dominio
             emailInput.value = currentValue + selectedDomain;
           }
           
-          // Ocultar mensaje de error si estaba visible
           emailError.classList.add('hidden');
-          
-          // Regresar el foco del cursor al input de email
           emailInput.focus();
         });
       });
@@ -458,8 +426,10 @@
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       };
 
-      const validatePhone = (phone) => {
-        return phone.trim().length >= 8;
+      const validateBirthyear = (yearStr) => {
+        const yr = parseInt(yearStr, 10);
+        const currentYear = new Date().getFullYear();
+        return yr >= 1920 && yr <= currentYear;
       };
 
       // Manejador del Evento Submit del Formulario
@@ -468,7 +438,7 @@
 
         // Limpiar errores previos
         let isValid = true;
-        [fullnameError, emailError, phoneError, genderError, birthdateError].forEach(el => el.classList.add('hidden'));
+        [fullnameError, emailError, genderError, birthyearError].forEach(el => el.classList.add('hidden'));
 
         // Validar Nombre
         if (!fullnameInput.value.trim()) {
@@ -482,21 +452,15 @@
           isValid = false;
         }
 
-        // Validar Teléfono
-        if (!validatePhone(phoneInput.value)) {
-          phoneError.classList.remove('hidden');
-          isValid = false;
-        }
-
         // Validar Género
         if (!genderInput.value) {
           genderError.classList.remove('hidden');
           isValid = false;
         }
 
-        // Validar Fecha de Nacimiento
-        if (!birthdateInput.value) {
-          birthdateError.classList.remove('hidden');
+        // Validar Año de Nacimiento
+        if (!validateBirthyear(birthyearInput.value.trim())) {
+          birthyearError.classList.remove('hidden');
           isValid = false;
         }
 
@@ -511,18 +475,18 @@
         const formData = {
           fullname: fullnameInput.value.trim(),
           email: emailInput.value.trim(),
-          phone: phoneInput.value.trim(),
           gender: genderInput.value,
-          birthdate: birthdateInput.value
+          birthyear: birthyearInput.value.trim()
         };
 
         // Estructura del JSON requerida por la integración
         const payload = {
           nombreCompleto: formData.fullname,
           correo: formData.email,
-          telefono: formData.phone,
           genero: formData.gender,
-          fechaNacimiento: formData.birthdate
+          anoNacimiento: formData.birthyear,
+          anioNacimiento: formData.birthyear,
+          fechaNacimiento: formData.birthyear
         };
 
         const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxhVaFy3CowlL9deYEBxLOkmE92USK71iO6JJj_yQNGUgq3l-JeXXsRcK94p7bKQNadAg/exec';
@@ -550,16 +514,8 @@
           // Llenar tarjeta de resumen
           summaryName.textContent = formData.fullname;
           summaryEmail.textContent = formData.email;
-          summaryPhone.textContent = formData.phone;
           summaryGender.textContent = formData.gender;
-
-          // Formatear fecha para el resumen (DD/MM/AAAA)
-          if (formData.birthdate) {
-            const [year, month, day] = formData.birthdate.split('-');
-            summaryBirthdate.textContent = `${day}/${month}/${year}`;
-          } else {
-            summaryBirthdate.textContent = '-';
-          }
+          summaryBirthyear.textContent = formData.birthyear;
           
           const now = new Date();
           summaryTime.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -590,7 +546,7 @@
         setTimeout(() => {
           // Limpiar formulario y errores
           form.reset();
-          [fullnameError, emailError, phoneError, genderError, birthdateError].forEach(el => el.classList.add('hidden'));
+          [fullnameError, emailError, genderError, birthyearError].forEach(el => el.classList.add('hidden'));
 
           successContainer.classList.add('hidden');
           formContainer.classList.remove('hidden');
